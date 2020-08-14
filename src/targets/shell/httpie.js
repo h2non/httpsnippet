@@ -32,10 +32,6 @@ module.exports = function (source, options) {
 
   var code = new CodeBuilder(opts.indent, opts.indent !== false ? ' \\\n' + opts.indent : ' ')
 
-  if (source.comment) {
-    code.push(`# ${source.comment}`).blank()
-  }
-
   var raw = false
   var flags = []
 
@@ -116,7 +112,11 @@ module.exports = function (source, options) {
     code.unshift('echo %s | ', shell.quote(source.postData.text))
   }
 
-  return code.join()
+  let result = code.join()
+  if (source.comment) {
+    result = `# ${source.comment}\n\n${result}`
+  }
+  return result
 }
 
 module.exports.info = {
