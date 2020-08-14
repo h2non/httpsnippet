@@ -19,6 +19,10 @@ module.exports = function (source, options) {
 
   var code = new CodeBuilder(opts.indent)
 
+  if (source.comment) {
+    code.push(`// ${source.comment}`).blank()
+  }
+
   code.push('AsyncHttpClient client = new DefaultAsyncHttpClient();')
 
   code.push(`client.prepare("${source.method.toUpperCase()}", "${source.fullUrl}")`)

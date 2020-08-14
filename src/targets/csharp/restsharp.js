@@ -6,6 +6,10 @@ module.exports = function (source, options) {
   var code = new CodeBuilder()
   var methods = [ 'GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'HEAD', 'OPTIONS' ]
 
+  if (source.comment) {
+    code.push(`// ${source.comment}`).blank()
+  }
+
   if (methods.indexOf(source.method.toUpperCase()) === -1) {
     return 'Method not supported'
   } else {

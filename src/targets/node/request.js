@@ -22,6 +22,10 @@ module.exports = function (source, options) {
   var includeFS = false
   var code = new CodeBuilder(opts.indent)
 
+  if (source.comment) {
+    code.push(`// ${source.comment}`).blank()
+  }
+
   code.push('var request = require("request");')
       .blank()
 

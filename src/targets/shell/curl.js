@@ -23,6 +23,10 @@ module.exports = function (source, options) {
 
   var code = new CodeBuilder(opts.indent, opts.indent !== false ? ' \\\n' + opts.indent : ' ')
 
+  if (source.comment) {
+    code.push(`# ${source.comment}`).blank()
+  }
+
   code.push('curl %s %s', opts.short ? '-X' : '--request', source.method)
       .push(util.format('%s%s', opts.short ? '' : '--url ', helpers.quote(source.fullUrl)))
 

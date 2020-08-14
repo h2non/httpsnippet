@@ -19,6 +19,10 @@ module.exports = function (source, options) {
 
   var code = new CodeBuilder(opts.indent)
 
+  if (source.comment) {
+    code.push(`// ${source.comment}`).blank()
+  }
+
   var methods = ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'HEAD']
 
   var methodsWithBody = ['POST', 'PUT', 'DELETE', 'PATCH']

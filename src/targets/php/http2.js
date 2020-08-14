@@ -24,6 +24,10 @@ module.exports = function (source, options) {
   var code = new CodeBuilder(opts.indent)
   var hasBody = false
 
+  if (source.comment) {
+    code.push(`// ${source.comment}`).blank()
+  }
+
   if (!opts.noTags) {
     code.push(opts.shortTags ? '<?' : '<?php')
         .blank()

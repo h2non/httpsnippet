@@ -20,6 +20,10 @@ module.exports = function (source, options) {
 
   var code = new CodeBuilder(opts.indent)
 
+  if (source.comment) {
+    code.push(`// ${source.comment}`).blank()
+  }
+
   switch (source.postData.mimeType) {
     case 'application/json':
       code.push('var data = JSON.stringify(%s);', JSON.stringify(source.postData.jsonObj, null, opts.indent))

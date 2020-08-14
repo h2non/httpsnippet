@@ -14,6 +14,11 @@ var CodeBuilder = require('../../helpers/code-builder')
 
 module.exports = function (source, options) {
   var code = new CodeBuilder()
+
+  if (source.comment) {
+    code.push(`# ${source.comment}`).blank()
+  }
+
   // Start Request
   code.push('import http.client')
       .blank()

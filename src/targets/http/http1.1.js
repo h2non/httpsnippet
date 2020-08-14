@@ -34,6 +34,10 @@ module.exports = function (source, options) {
   // All lines have no indentation, and should be terminated with CRLF.
   var code = new CodeBuilder('', CRLF)
 
+  if (source.comment) {
+    code.push(`# ${source.comment}`).blank()
+  }
+
   // RFC 7230 Section 5.3. Request Target
   // Determines if the Request-Line should use 'absolute-form' or 'origin-form'.
   // Basically it means whether the "http://domain.com" will prepend the full url.

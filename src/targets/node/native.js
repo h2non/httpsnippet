@@ -28,6 +28,10 @@ module.exports = function (source, options) {
     headers: source.allHeaders
   }
 
+  if (source.comment) {
+    code.push(`// ${source.comment}`).blank()
+  }
+
   code.push('var http = require("%s");', source.uriObj.protocol.replace(':', ''))
 
   code.blank()

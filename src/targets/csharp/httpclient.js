@@ -30,6 +30,10 @@ module.exports = function (source, options) {
   var indentation = '    '
   var code = new CodeBuilder(indentation)
 
+  if (source.comment) {
+    code.push(`// ${source.comment}`).blank()
+  }
+
   var clienthandler = ''
   var cookies = !!source.allHeaders.cookie
   var decompressionMethods = getDecompressionMethods(source)

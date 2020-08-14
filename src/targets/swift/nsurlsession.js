@@ -28,6 +28,10 @@ module.exports = function (source, options) {
     hasBody: false
   }
 
+  if (source.comment) {
+    code.push(`// ${source.comment}`).blank()
+  }
+
   // We just want to make sure people understand that is the only dependency
   code.push('import Foundation')
 

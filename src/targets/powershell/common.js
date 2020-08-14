@@ -16,6 +16,10 @@ module.exports = function (command) {
     // Add headers, including the cookies
     var headers = Object.keys(source.headersObj)
 
+    if (source.comment) {
+      code.push(`# ${source.comment}`).blank()
+    }
+
     // construct headers
     if (headers.length) {
       code.push('$headers=@{}')

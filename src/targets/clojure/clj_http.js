@@ -90,6 +90,10 @@ module.exports = function (source, options) {
   var code = new CodeBuilder(options)
   var methods = ['get', 'post', 'put', 'delete', 'patch', 'head', 'options']
 
+  if (source.comment) {
+    code.push(`;; ${source.comment}`).blank()
+  }
+
   if (methods.indexOf(source.method.toLowerCase()) === -1) {
     return code.push('Method not supported').join()
   }

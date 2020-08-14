@@ -20,6 +20,10 @@ module.exports = function (source, options) {
   var includeFS = false
   var code = new CodeBuilder(opts.indent)
 
+  if (source.comment) {
+    code.push(`// ${source.comment}`).blank()
+  }
+
   code.push('var unirest = require("unirest");')
       .blank()
       .push('var req = unirest("%s", "%s");', source.method, source.url)

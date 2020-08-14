@@ -22,6 +22,10 @@ module.exports = function (source, options) {
 
   var code = new CodeBuilder(opts.indent)
 
+  if (source.comment) {
+    code.push(`// ${source.comment}`).blank()
+  }
+
   code.push('HttpRequest request = HttpRequest.newBuilder()')
   code.push(2, '.uri(URI.create("%s"))', source.fullUrl)
 

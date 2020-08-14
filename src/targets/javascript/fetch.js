@@ -32,6 +32,10 @@ module.exports = function (source, options) {
     options.credentials = opts.credentials
   }
 
+  if (source.comment) {
+    code.push(`// ${source.comment}`).blank()
+  }
+
   switch (source.postData.mimeType) {
     case 'application/x-www-form-urlencoded':
       options.body = source.postData.paramsObj

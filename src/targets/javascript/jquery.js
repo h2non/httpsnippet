@@ -27,6 +27,10 @@ module.exports = function (source, options) {
     headers: source.allHeaders
   }
 
+  if (source.comment) {
+    code.push(`// ${source.comment}`).blank()
+  }
+
   switch (source.postData.mimeType) {
     case 'application/x-www-form-urlencoded':
       settings.data = source.postData.paramsObj ? source.postData.paramsObj : source.postData.text

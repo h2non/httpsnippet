@@ -16,6 +16,10 @@ module.exports = function (source, options) {
   // Let's Go!
   var code = new CodeBuilder('\t')
 
+  if (source.comment) {
+    code.push(`// ${source.comment}`).blank()
+  }
+
   // Define Options
   var opts = Object.assign({
     showBoilerplate: true,

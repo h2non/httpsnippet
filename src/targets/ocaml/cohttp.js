@@ -20,6 +20,10 @@ module.exports = function (source, options) {
   var methods = ['get', 'post', 'head', 'delete', 'patch', 'put', 'options']
   var code = new CodeBuilder(opts.indent)
 
+  if (source.comment) {
+    code.push(`(* ${source.comment} *)`).blank()
+  }
+
   code.push('open Cohttp_lwt_unix')
       .push('open Cohttp')
       .push('open Lwt')

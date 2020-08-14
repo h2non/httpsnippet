@@ -32,6 +32,10 @@ module.exports = function (source, options) {
 
   var code = new CodeBuilder(opts.indent, opts.indent !== false ? ' \\\n' + opts.indent : ' ')
 
+  if (source.comment) {
+    code.push(`# ${source.comment}`).blank()
+  }
+
   var raw = false
   var flags = []
 

@@ -5,6 +5,10 @@ var CodeBuilder = require('../../helpers/code-builder')
 module.exports = function (source, options) {
   var code = new CodeBuilder()
 
+  if (source.comment) {
+    code.push(`// ${source.comment}`).blank()
+  }
+
   code.push('CURL *hnd = curl_easy_init();')
       .blank()
       .push('curl_easy_setopt(hnd, CURLOPT_CUSTOMREQUEST, "%s");', source.method.toUpperCase())

@@ -17,6 +17,10 @@ module.exports = function (source, options) {
   // Start snippet
   var code = new CodeBuilder('    ')
 
+  if (source.comment) {
+    code.push(`# ${source.comment}`).blank()
+  }
+
   // Import requests
   code.push('import requests')
       .blank()
